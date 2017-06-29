@@ -128,7 +128,7 @@
   replace: 
     dest: "{{nexus_oss_installation_dir}}/current-nexus/bin/nexus"
     regexp: "^#PIDDIR=(.*)$"
-    replace: "PIDDIR=/var/run/nexus"
+    replace: "PIDDIR=/var/run/nexus ; if [ ! -d /var/run/nexus ] ; then mkdir -p /var/run/nexus ; chown {{nexus_oss_user}}.{{nexus_oss_group}} /var/run/nexus ; fi"
 
 
 - name: copy init-script to /etc/init.d
